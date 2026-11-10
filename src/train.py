@@ -36,6 +36,7 @@ def main():
     # Time-based validation: fit on Jan-Aug, hold out Sep-Oct
     month = pd.to_datetime(dev["date"]).dt.month
     fit_df, hold_df = dev[month <= 8], dev[month >= 9]
+    
     med = F.weight_medians(fit_df)
     fit_df = F.add_features(fit_df, med)
     hold_df = F.add_features(hold_df, med)
